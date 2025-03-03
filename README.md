@@ -10,4 +10,5 @@
 - algorithim finds lowest value in an array and moves it to front of an array
 # linear search
 - it goes through value by value to find the index of the value it searches for
-
+# Inventory management system for small store to showcase our practice in data structures
+- we will use a Dictionary to store items, itmes anems will be the key and value will be a dictionary containing quantiy and price
