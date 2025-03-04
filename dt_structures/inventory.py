@@ -17,6 +17,10 @@ class Inventory:
         self.filename=filename
         self.load_inventory()
 
+    def save_inventory(self): # Moved to be before it is called.
+        with open(self.filename, "w") as f:
+            json.dump({name: item.to_dict() for name, item in self.items.items()}, f, indent=4)
+
     def add_item(self,name,price, quantity):
             if name in self.items:
                 print(f"Item {name} already exists")
@@ -34,7 +38,8 @@ class Inventory:
         if name in self.items:
             try:
                 new_quantity=int(new_quantity)
-                self.items[name]=Item(new_price,new_quantity)
+                new_price = float(new_price)
+                self.items[name]=Item(name,new_price,new_quantity)
                 print(f"Updated quantity {name} to {new_quantity} and price of {new_price}.")
                 self.save_inventory()
             except ValueError:
@@ -45,7 +50,7 @@ class Inventory:
     def get_item_info(self, name):
         if name in self.items:
             item=self.items[name]
-            print(f"Item: {name}, Quantity: {item['quantity']}, Price: ${item['price']}")
+            print(f"Item: {item.name}, Quantity: {item.quantity}, Price: ${item.price}") # corrected line
         else:
             print(f"Item '{name}' not found in inventory.")
     
@@ -75,21 +80,41 @@ class Inventory:
             return
         for item in sorted_items:
             print(f"Item: {item.name}, Quantity:{item.quantity}, Price:{item.price}")    
-            
 
-inventory=Inventory()
+    def load_inventory(self):
+        try:
+            with open(self.filename, "r") as f:
+                data=json.load(f)
+                self.items = {name: Item.from_dict(item_data) for name, item_data in data.items()}
+        except FileNotFoundError:
+            print("Inventory file not found. Creating a new one.")
+        except json.JSONDecodeError:
+            print("Inventory file corrupt or empty. Creating a new one.")
+            self.items = {}
 
-inventory.add_item("Laptop",10,1200)
-inventory.add_item("Mouse",2,10)
-inventory.add_item("Monitor",5,100)
-inventory.add_item("Keyboard",25,500)
-inventory.add_item("Ip Phomes",17,2200)
+# Example Usage
+inventory = Inventory()
 
-inventory.get_item_info("Monitor")
+inventory.add_item("Laptop", 10, 1200)
+inventory.add_item("Mouse", 50, 15)
+inventory.add_item("Keyboard", 25, 50)
 
-inventory.update_quantity("Mouse",5,30)
+inventory.get_item_info("Mouse")
+
+inventory.update_quantity("Mouse",20, 45)
 inventory.get_item_info("Mouse")
 
 inventory.get_item_info("Headphones")
-inventory.add_item("Mouse",30,12)
+
+inventory.remove_item("Keyboard")
+
+inventory.calculate_total()
+
+inventory.sort_items(by="price")
+
+inventory.add_item("Monitor", "ten", 200) # testing error handling.
+inventory.update_quantity("Laptop", "a lot",100) # testing error handling.
+            
+
+
 
