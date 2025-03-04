@@ -92,4 +92,4 @@ inventory.get_item_info("Mouse")
 
 inventory.get_item_info("Headphones")
 inventory.add_item("Mouse",30,12)
-
+print("end of program.")
