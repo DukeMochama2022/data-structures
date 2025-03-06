@@ -12,3 +12,9 @@
 - it goes through value by value to find the index of the value it searches for
 # Inventory management system for small store to showcase our practice in data structures
 - we will use a Dictionary to store items, itmes anems will be the key and value will be a dictionary containing quantiy and price
+
+# JSON
+- json.dumps() : Converts a Python object into a JSON string.
+- json.loads(): Parses a JSON string and converts it into a Python object.
+- json.dump(): Serializes a Python object as a JSON formatted stream to a file.
+- json.load(): Deserializes a JSON formatted stream from a file to a Python object.
