@@ -13,7 +13,7 @@
         {
             "name": "Samsung Phone",
             "price": 30000.0,
-            "stock": 22
+            "stock": 17
         }
     ],
     "orders": [
@@ -22,6 +22,12 @@
             "quantity": 5,
             "price": 30000,
             "total": 150000
+        },
+        {
+            "product": "Samsung Phone",
+            "quantity": 5,
+            "price": 30000.0,
+            "total": 150000.0
         }
     ]
 }

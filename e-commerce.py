@@ -80,9 +80,28 @@ if __name__ =="__main__":
             stock=int(input("Enter initial stock..."))
             add_product(name,price,stock)
 
+        elif choice ==2:
+            view_products()
 
+        elif choice ==3:
+            view_products()
+            if load_data()['products']:
+                try:
+                    index=int(input("Enter product number :"))
+                    quantity=int(input("Enter product quantity :"))
+                    place_order(index,quantity)
+                except ValueError:
+                    print("Invalid input. Enter numbers.")    
 
+        elif choice == 4:
+            view_orders()
 
+        elif choice == 5:
+            print("Exiting.......")
+            break    
+
+        else:
+            print("Invalid choice. Please try again.")
 
 
 
