@@ -33,6 +33,28 @@ def view_products():
     for i, product in enumerate(data["products"]):
         print(f"{i + 1}. {product['name']} - ${product['price']} (Stock: {product['stock']})")
 
+def  place_order(index, quantity):
+    data=load_data()
+    if not data['products']:
+        print("No products available.")
+        return
+
+    if index < 1 or index  > len(data['products']):
+        print("Invalid product index.")
+        return
+
+    product=data["products"][index-1]
+
+    if product ["stock"] <quantity:
+        print("Insufficent stock.")
+        return
+    product["stock"]-=quantity
+    order={"product":product["name"], "quantity":quantity,"price":product["price"], "total":product["price"]*quantity}
+    data['orders'].append(order)
+    save_data(data)
+    print(f"Order for {quantity} {product['name']} placed successfuly.")  
+place_order(1,5)          
+
 
 
 
