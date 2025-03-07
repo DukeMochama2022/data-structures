@@ -63,6 +63,9 @@ def view_orders():
     for i, order in enumerate(data['orders']):
         print(f"{i + 1}. {order['quantity']} {order['product']} - Total: ${order['total']}") 
 
+def products_info():
+    data=load_data()
+    
 if __name__ =="__main__":
     while True:
         print("\nE-commerce System")
