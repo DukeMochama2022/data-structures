@@ -2,13 +2,18 @@
     "products": [
         {
             "name": "TV",
-            "price": 30000,
+            "price": 30000.0,
             "stock": 5
         },
         {
             "name": "Mountain Bike",
-            "price": 45000,
+            "price": 45000.0,
             "stock": 10
+        },
+        {
+            "name": "Samsung Phone",
+            "price": 30000.0,
+            "stock": 22
         }
     ],
     "orders": [

@@ -53,7 +53,36 @@ def  place_order(index, quantity):
     data['orders'].append(order)
     save_data(data)
     print(f"Order for {quantity} {product['name']} placed successfuly.")  
-place_order(1,5)          
+
+def view_orders():
+    data=load_data()
+    if not data["orders"]:
+        print("No orders placed yet.")
+        return
+    print("Order history.") 
+    for i, order in enumerate(data['orders']):
+        print(f"{i + 1}. {order['quantity']} {order['product']} - Total: ${order['total']}") 
+
+if __name__ =="__main__":
+    while True:
+        print("\nE-commerce System")
+        print("1. Add product")
+        print("2. View product")
+        print("3. Order product")
+        print("4. View orders")
+        print("5. Quit")
+
+        choice=int(input("Enter your choice:"))
+
+        if choice == 1:
+            name=input("Enter product name...")
+            price=float(input("Enter product price..."))
+            stock=int(input("Enter initial stock..."))
+            add_product(name,price,stock)
+
+
+
+
 
 
 
