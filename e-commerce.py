@@ -76,6 +76,18 @@ def delete_product(index):
     save_data(data)
     print(f"Product '{deleted_product['name']}' deleted successfully.")       
 
+def delete_order(index):
+    data=load_data()
+    if not data['orders']:
+        print("No available orders.")
+        return
+
+    if index < 1 or index > len(data['orders']):
+        print("Invalid index")
+        return
+    deleted_order=data['orders'].pop(index-1)
+    save_data(data)
+    print(f"Order for {deleted_order['quantity']} {deleted_order['product']} deleted successfully.")      
     
 if __name__ =="__main__":
     while True:
@@ -85,7 +97,8 @@ if __name__ =="__main__":
         print("3. Order product")
         print("4. View orders")
         print("5. Delete product")
-        print("6. Quit")
+        print("6. Delete order")
+        print("7. Quit")
 
         choice=int(input("Enter your choice:"))
 
@@ -118,9 +131,18 @@ if __name__ =="__main__":
                     product_index = int(input("Enter product number to delete: "))
                     delete_product(product_index)
                 except ValueError:
-                    print("Invalid input. Please enter numbers.")    
+                    print("Invalid input. Please enter numbers.")
 
         elif choice == 6:
+            view_orders()
+            if load_data()['orders']:
+                try:
+                    index = int(input("Enter order number to delete."))
+                    delete_order(index)
+                except ValueError:
+                    print("Error occured please enter again....")   
+
+        elif choice == 7:
             print("Exiting.......")
             break    
 

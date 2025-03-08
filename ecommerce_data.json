@@ -3,26 +3,25 @@
         {
             "name": "Mountain Bike",
             "price": 45000.0,
-            "stock": 10
+            "stock": 1
         },
         {
             "name": "Samsung Phone",
             "price": 30000.0,
             "stock": 17
+        },
+        {
+            "name": "Techno Spark",
+            "price": 200.0,
+            "stock": 26
         }
     ],
     "orders": [
         {
-            "product": "TV",
-            "quantity": 5,
-            "price": 30000,
-            "total": 150000
-        },
-        {
-            "product": "Samsung Phone",
-            "quantity": 5,
-            "price": 30000.0,
-            "total": 150000.0
+            "product": "Techno Spark",
+            "quantity": 3,
+            "price": 200.0,
+            "total": 600.0
         }
     ]
 }
