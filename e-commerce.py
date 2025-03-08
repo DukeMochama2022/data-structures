@@ -63,8 +63,19 @@ def view_orders():
     for i, order in enumerate(data['orders']):
         print(f"{i + 1}. {order['quantity']} {order['product']} - Total: ${order['total']}") 
 
-def products_info():
+def delete_product(index):
     data=load_data()
+    if not  data['products']:
+        print("No prodcuts available.")
+        return
+
+    if index < 1 or index > len(data['products']):
+        print("Invalid index.")
+        return
+    deleted_product=data["products"].pop(index -1)
+    save_data(data)
+    print(f"Product '{deleted_product['name']}' deleted successfully.")       
+
     
 if __name__ =="__main__":
     while True:
@@ -73,7 +84,8 @@ if __name__ =="__main__":
         print("2. View product")
         print("3. Order product")
         print("4. View orders")
-        print("5. Quit")
+        print("5. Delete product")
+        print("6. Quit")
 
         choice=int(input("Enter your choice:"))
 
@@ -99,7 +111,16 @@ if __name__ =="__main__":
         elif choice == 4:
             view_orders()
 
-        elif choice == 5:
+        elif choice ==5:
+            view_products()
+            if load_data()["products"]:
+                try:
+                    product_index = int(input("Enter product number to delete: "))
+                    delete_product(product_index)
+                except ValueError:
+                    print("Invalid input. Please enter numbers.")    
+
+        elif choice == 6:
             print("Exiting.......")
             break    
 

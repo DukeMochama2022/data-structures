@@ -1,11 +1,6 @@
 {
     "products": [
         {
-            "name": "TV",
-            "price": 30000.0,
-            "stock": 5
-        },
-        {
             "name": "Mountain Bike",
             "price": 45000.0,
             "stock": 10
